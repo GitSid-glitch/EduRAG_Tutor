@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RAG Tutor</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div>
+          <p class="eyebrow">Internship Submission</p>
+          <h1>RAG Tutor</h1>
+          <p class="muted">
+            Upload any chapter or concept PDF, ask grounded questions, and get a relevant inline visual when one fits.
+          </p>
+        </div>
+        <div class="upload-card">
+          <label for="pdfInput" class="upload-label">Choose PDF</label>
+          <input id="pdfInput" type="file" accept="application/pdf" />
+          <button id="uploadBtn">Build Topic Index</button>
+          <p id="uploadStatus" class="status">No document indexed yet.</p>
+        </div>
+        <div id="topicCard" class="topic-card hidden"></div>
+      </aside>
+
+      <main class="main-panel">
+        <section id="emptyState" class="empty-state">
+          <p class="eyebrow">RAG + Visual Retrieval</p>
+          <h2>Ask document-grounded questions</h2>
+          <p>
+            The backend extracts the PDF, chunks it, builds embeddings, retrieves the most relevant passages, and sends only those to Groq for grounded tutoring.
+          </p>
+        </section>
+
+        <section id="chatSection" class="chat-section hidden">
+          <div id="messages" class="messages"></div>
+          <form id="chatForm" class="composer">
+            <textarea id="questionInput" rows="3" placeholder="Ask something from the uploaded document..."></textarea>
+            <button type="submit">Ask Tutor</button>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
