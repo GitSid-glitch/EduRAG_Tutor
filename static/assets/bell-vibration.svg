@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280">
+  <rect width="400" height="280" fill="#fffdf8"/>
+  <path d="M140 62c0-31 24-46 60-46s60 15 60 46v81l16 41H124l16-41z" fill="#f4bf58" stroke="#173b36" stroke-width="6"/>
+  <circle cx="200" cy="209" r="17" fill="#173b36"/>
+  <path d="M94 120c-22 12-22 32 0 44M306 120c22 12 22 32 0 44M70 106c-33 22-33 50 0 72M330 106c33 22 33 50 0 72" fill="none" stroke="#0d7a63" stroke-width="8" stroke-linecap="round"/>
+  <text x="200" y="250" font-size="24" text-anchor="middle" fill="#173b36" font-family="Georgia">Bell vibration creates sound</text>
+</svg>
