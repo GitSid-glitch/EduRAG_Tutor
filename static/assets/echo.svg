@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280">
+  <rect width="400" height="280" fill="#f7fbfb"/>
+  <rect x="296" y="40" width="42" height="180" fill="#8aa19d"/>
+  <circle cx="82" cy="150" r="26" fill="#d78b4d"/>
+  <path d="M108 150h148" stroke="#173b36" stroke-width="5"/>
+  <path d="M108 132c22 0 22-20 44-20s22 20 44 20 22-20 44-20" fill="none" stroke="#0d7a63" stroke-width="6"/>
+  <path d="M256 168c-22 0-22 20-44 20s-22-20-44-20-22 20-44 20" fill="none" stroke="#145c75" stroke-width="6"/>
+  <text x="108" y="110" font-size="18" fill="#173b36" font-family="Georgia">Outgoing sound</text>
+  <text x="178" y="204" font-size="18" fill="#173b36" font-family="Georgia">Reflected wave</text>
+  <text x="317" y="30" font-size="18" text-anchor="middle" fill="#173b36" font-family="Georgia">Wall</text>
+</svg>
