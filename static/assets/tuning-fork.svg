@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280">
+  <rect width="400" height="280" fill="#f8fcff"/>
+  <path d="M136 32v116c0 17 14 31 31 31s31-14 31-31V32M233 32v116c0 17 14 31 31 31s31-14 31-31V32" fill="none" stroke="#145c75" stroke-width="16" stroke-linecap="round"/>
+  <rect x="183" y="145" width="34" height="88" rx="12" fill="#d78b4d"/>
+  <path d="M102 52c-18 9-18 23 0 32M298 52c18 9 18 23 0 32" fill="none" stroke="#0d7a63" stroke-width="7" stroke-linecap="round"/>
+  <text x="200" y="260" font-size="24" text-anchor="middle" fill="#173b36" font-family="Georgia">Oscillation of a tuning fork</text>
+</svg>
