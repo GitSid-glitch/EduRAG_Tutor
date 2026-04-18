@@ -37,7 +37,7 @@ async def root() -> FileResponse:
     return FileResponse(STATIC_DIR / "index.html")
 
 
-@app.get("/health")
+@app.api_route("/health", methods=["GET", "HEAD"])
 async def health() -> dict:
     return {"status": "ok", "groqConfigured": bool(os.getenv("GROQ_API_KEY"))}
 
