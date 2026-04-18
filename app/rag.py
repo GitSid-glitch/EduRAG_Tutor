@@ -239,6 +239,7 @@ class TutorEngine:
         self.topics_dir = self.storage_dir / "topics"
         self.topics_dir.mkdir(exist_ok=True)
         self.embedding_backend = EmbeddingBackend(base_dir=base_dir)
+        self.sound_images = self._load_sound_images()
 
     async def ingest_pdf(self, file: UploadFile, images_metadata: Optional[list[dict]] = None) -> dict:
         topic_id = uuid4().hex[:10]
@@ -276,7 +277,7 @@ class TutorEngine:
             "pdfPath": str(pdf_path),
             "digest": hashlib.sha256(content).hexdigest()[:16],
             "summary": self._summarize_document(chunks),
-            "imagesAvailable": images_metadata or [],
+            "imagesAvailable": images_metadata or self._topic_images(filename, chunks),
         }
 
         (topic_dir / "topic.json").write_text(json.dumps(topic_meta, indent=2), encoding="utf-8")
@@ -755,6 +756,73 @@ class TutorEngine:
         preview = " ".join(chunk["text"] for chunk in chunks[:3])
         sentences = _split_sentences(preview)
         return " ".join(sentences[:3])[:360].strip()
+
+    def _topic_images(self, filename: str, chunks: list[dict]) -> list[dict]:
+        combined = f"{filename.lower()} " + " ".join(chunk["text"] for chunk in chunks[:24]).lower()
+        sound_terms = [
+            "sound",
+            "vibration",
+            "amplitude",
+            "frequency",
+            "pitch",
+            "echo",
+            "compression",
+            "rarefaction",
+            "tuning fork",
+            "longitudinal",
+            "loudness",
+            "eardrum",
+        ]
+        hits = sum(1 for term in sound_terms if term in combined)
+        if "sound" in filename.lower() or hits >= 2:
+            return self.sound_images
+        return []
+
+    def _load_sound_images(self) -> list[dict]:
+        return [
+            {
+                "id": "img_001",
+                "filename": "/static/assets/bell-vibration.svg",
+                "title": "Bell Vibration",
+                "keywords": ["bell", "vibration", "sound", "source"],
+                "description": "A bell producing sound through rapid vibration.",
+            },
+            {
+                "id": "img_002",
+                "filename": "/static/assets/tuning-fork.svg",
+                "title": "Tuning Fork Oscillation",
+                "keywords": ["tuning fork", "oscillation", "prongs", "vibration"],
+                "description": "A tuning fork shows alternating oscillation that creates sound waves.",
+            },
+            {
+                "id": "img_003",
+                "filename": "/static/assets/longitudinal-wave.svg",
+                "title": "Longitudinal Sound Wave",
+                "keywords": ["wave", "compression", "rarefaction", "medium"],
+                "description": "Sound traveling as longitudinal compressions and rarefactions in air.",
+            },
+            {
+                "id": "img_004",
+                "filename": "/static/assets/ear-pathway.svg",
+                "title": "How The Ear Detects Sound",
+                "keywords": ["ear", "eardrum", "hearing", "sound"],
+                "description": "The outer ear, eardrum, and inner ear pathway used for hearing.",
+            },
+            {
+                "id": "img_005",
+                "filename": "/static/assets/amplitude-pitch.svg",
+                "title": "Amplitude And Pitch",
+                "keywords": ["amplitude", "pitch", "loudness", "frequency"],
+                "description": "Comparison of wave amplitude and frequency to explain loudness and pitch.",
+            },
+            {
+                "id": "img_006",
+                "filename": "/static/assets/echo.svg",
+                "title": "Echo Reflection",
+                "keywords": ["echo", "reflection", "distance", "time"],
+                "description": "Sound reflection from a wall leading to an echo heard by the listener.",
+            },
+        ]
 
     def _select_image(self, topic: dict, question: str, chunks: list[dict]) -> dict | None:
         images = topic.get("imagesAvailable", []) or []
